@@ -15,13 +15,13 @@ All commands can be called with some additional options as can be seen below.
 
 ## Commands
 * [build](#build)
-* [build:watch](#build:watch)
+* [build:watch](#buildwatch)
 * [clean](#clean)
 * [docs](#docs)
 * [esdocs](#esdocs)
 * [link](#link)
 * [lint](#lint)
-* [lint:alias](#lint:alias)
+* [lint:alias](#lintalias)
 * [release](#release)
 
 ## build
