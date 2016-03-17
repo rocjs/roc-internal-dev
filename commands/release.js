@@ -25,7 +25,7 @@ module.exports = (name) => () => {
     execSync(`cd packages/${name}-dev && npm version ${nextVersion} --no-git-tag-version`);
 
     // 4) Read the version from main package
-    const newVersion = require(`../packages/${name}/package.json`).version;
+    const newVersion = require(resolvePath(process.cwd(), `packages/${name}/package.json`)).version;
 
     // 5) Create a new commit
     // 6) Create a v* tag that points to that commit
