@@ -15,7 +15,7 @@ const babelPlugins = [
 
 const babelCommand = (packageName, extra) => {
     extra = extra ? ' ' + extra : '';
-    return `${babel} packages/${packageName}/src --out-dir packages/${packageName}/lib --source-maps --plugins ${babelPlugins} --no-babelrc${extra}`;
+    return `${babel} packages/${packageName}/src --out-dir packages/${packageName}/lib --source-maps --plugins ${babelPlugins}${extra}`;
 }
 
 module.exports = (name, extra) => `${babelCommand(name, extra)} & ${babelCommand(name + '-dev', extra)}`;
