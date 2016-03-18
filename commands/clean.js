@@ -1,5 +1,4 @@
-const join = require('path').join;
-const rimraf = join(__dirname, '..', 'node_modules', '.bin', 'rimraf');
+const rimraf = require.resolve('rimraf/bin');
 
 const clean = (packageName) => `${rimraf} packages/${packageName}/lib packages/${packageName}/esdocs`;
 

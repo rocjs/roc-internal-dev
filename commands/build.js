@@ -1,5 +1,4 @@
-const join = require('path').join;
-const babel = join(__dirname, '..', 'node_modules', '.bin', 'babel');
+const babel = require.resolve('babel-cli/bin/babel');
 
 const babelPlugins = [
     require.resolve('babel-plugin-transform-object-rest-spread'),

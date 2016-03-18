@@ -1,5 +1,4 @@
-const join = require('path').join;
-const esdoc = join(__dirname, '..', 'node_modules', '.bin', 'esdoc');
+const esdoc = require.resolve('esdoc/out/src/ESDocCLI.js');
 
 const esdocConfig = require.resolve('../configuration/esdoc.js');
 

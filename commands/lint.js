@@ -1,6 +1,4 @@
-const join = require('path').join;
-
-const eslint = join(__dirname, '..', 'node_modules', '.bin', 'eslint');
+const eslint = require.resolve('eslint/bin/eslint');
 const eslintConfig = require.resolve('../configuration/.eslintrc.js');
 
 const eslintCommand = (packageName) =>
