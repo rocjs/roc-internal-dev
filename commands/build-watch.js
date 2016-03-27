@@ -1,1 +1,1 @@
-module.exports = (name) => require('./build')(name, '--watch');
+module.exports = (packages) => require('./build')(packages, '--watch');

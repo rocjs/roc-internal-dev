@@ -1,5 +1,9 @@
 const rimraf = require.resolve('rimraf/bin');
 
-const clean = (packageName) => `${rimraf} packages/${packageName}/lib packages/${packageName}/esdocs`;
+const clean = (package) => `${rimraf} ${package.path}/lib ${package.path}/esdocs`;
 
-module.exports = (name) => `${clean(name)} & ${clean(name + '-dev')}`;
+module.exports = (packages) => {
+    return packages
+        .map(clean)
+        .join(' & ');
+}

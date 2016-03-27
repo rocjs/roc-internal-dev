@@ -12,9 +12,13 @@ const babelPlugins = [
     require.resolve('babel-plugin-transform-export-extensions'),
 ].join(',');
 
-const babelCommand = (packageName, extra) => {
+const babelCommand = (package, extra) => {
     extra = extra ? ' ' + extra : '';
-    return `${babel} packages/${packageName}/src --out-dir packages/${packageName}/lib --source-maps --plugins ${babelPlugins}${extra}`;
+    return `${babel} ${package.path}/src --out-dir ${package.path}/lib --source-maps --plugins ${babelPlugins}${extra}`;
 }
 
-module.exports = (name, extra) => `${babelCommand(name, extra)} & ${babelCommand(name + '-dev', extra)}`;
+module.exports = (packages, extra) => {
+    return packages
+        .map((package) => babelCommand(package, extra))
+        .join(' & ');
+}

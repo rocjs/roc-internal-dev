@@ -18,4 +18,12 @@ You can use the short name `rid` if you don't want to write out the entire name.
 [Please see here for all of the commands](/docs/Commands.md).
 
 ## Future
-We should probably create a template that can be used to quickly create new packages.
+We should create a template that can be used to quickly create new packages/plugins.
+
+# Changelog
+## 1.1.0
+- More generic way to handle extensions, brings support for plugins.
+- New better way to generate documentation.
+
+## 1.0.0
+- Initial version

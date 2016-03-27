@@ -4,10 +4,12 @@ const readFileSync = require('fs').readFileSync;
 const prompt = require('readline-sync').question;
 const execSync = require('roc').executeSync;
 
-module.exports = (name) => () => {
-    // Will base the version number on the main package
+module.exports = (packages) => () => {
+    const firstPackagePath = packages[0].path;
+
+    // Will base the version number on the first package
     const getVersion = () =>
-        JSON.parse(readFileSync(resolvePath(process.cwd(), `packages/${name}`, 'package.json'))).version;
+        JSON.parse(readFileSync(resolvePath(firstPackagePath, 'package.json'))).version;
 
     // Get the next version, which may be specified as a semver version number or anything `npm version` recognizes. This
     // is a "pre-release" if nextVersion is premajor, preminor, prepatch, or prerelease
@@ -15,17 +17,17 @@ module.exports = (name) => () => {
     const isPrerelease = nextVersion.substring(0, 3) === 'pre';
 
     // 1) Make sure the build passes
-    execSync(require('./build')(name));
+    execSync(require('./build')(packages));
 
     // 2) Make sure the tests pass (Currently only lint)
-    execSync(require('./lint')(name));
+    execSync(require('./lint')(packages));
 
-    // 3) Increment the package version in package.json for both projects
-    execSync(`cd packages/${name} && npm version ${nextVersion} --no-git-tag-version`);
-    execSync(`cd packages/${name}-dev && npm version ${nextVersion} --no-git-tag-version`);
+    // 3) Increment the package version in package.json for all projects
+    packages.forEach((package) =>
+        execSync(`cd ${package.path} && npm version ${nextVersion} --no-git-tag-version`));
 
     // 4) Read the version from main package
-    const newVersion = require(resolvePath(process.cwd(), `packages/${name}/package.json`)).version;
+    const newVersion = require(resolvePath(firstPackagePath, 'package.json')).version;
 
     // 5) Create a new commit
     // 6) Create a v* tag that points to that commit
@@ -35,8 +37,8 @@ module.exports = (name) => () => {
     execSync('git push origin master');
 
     // 8) Publish to npm. Use the "next" tag for pre-releases, "latest" for all others
-    execSync(`cd packages/${name} && npm publish --tag ${isPrerelease ? 'next' : 'latest'}`);
-    execSync(`cd packages/${name}-dev && npm publish --tag ${isPrerelease ? 'next' : 'latest'}`);
+    packages.forEach((package) =>
+        execSync(`cd ${package.path} && npm publish --tag ${isPrerelease ? 'next' : 'latest'}`));
 
     // 9) Push the v* tag to GitHub
     execSync(`git push -f origin v${newVersion}`);
