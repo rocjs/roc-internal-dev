@@ -6,7 +6,7 @@ const toHide0 = Object.keys(require('roc').roc.config.commands);
 const toHide = Object.keys(require('roc').roc.config.commands).join(',');
 const toHide2 = Object.keys(require('../config/roc.config.meta.js').commands);
 
-const getConfiguration = require('roc/lib/cli/test').getConfiguration;
+const getConfiguration = require('roc').getConfiguration;
 
 const rocPackage = require('roc');
 
