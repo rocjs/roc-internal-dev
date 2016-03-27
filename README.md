@@ -21,6 +21,9 @@ You can use the short name `rid` if you don't want to write out the entire name.
 We should create a template that can be used to quickly create new packages/plugins.
 
 # Changelog
+## 1.1.2
+- Solved a bug in the release script.
+
 ## 1.1.1
 - Made a correct reference to getConfiguration from `roc`.
 
