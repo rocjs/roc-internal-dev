@@ -1,6 +1,6 @@
 {
   "name": "@rocjs/roc-internal-dev",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Roc package for used for development of Roc packages",
   "main": "index.js",
   "bin": {
