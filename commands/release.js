@@ -22,28 +22,31 @@ module.exports = (packages) => () => {
     // 2) Make sure the tests pass (Currently only lint)
     execSync(require('./lint')(packages));
 
-    // 3) Increment the package version in package.json for all projects
+    // 3) Generate new documentation
+    execSync(require('./docs')(packages));
+
+    // 4) Increment the package version in package.json for all projects
     packages.forEach((package) =>
         execSync(`cd ${package.path} && npm version ${nextVersion} --no-git-tag-version`));
 
-    // 4) Read the version from main package
+    // 5) Read the version from main package
     const newVersion = getVersion();
 
-    // 5) Create a new commit
-    // 6) Create a v* tag that points to that commit
+    // 6) Create a new commit
+    // 7) Create a v* tag that points to that commit
     execSync(`git add . && git commit -m "Version ${newVersion}" && git tag v${newVersion}`);
 
-    // 7) Push to GitHub master. Do this before we publish in case anyone has pushed to GitHub since we last pulled
+    // 8) Push to GitHub master. Do this before we publish in case anyone has pushed to GitHub since we last pulled
     execSync('git push origin master');
 
-    // 8) Publish to npm. Use the "next" tag for pre-releases, "latest" for all others
+    // 9) Publish to npm. Use the "next" tag for pre-releases, "latest" for all others
     packages.forEach((package) =>
         execSync(`cd ${package.path} && npm publish --tag ${isPrerelease ? 'next' : 'latest'}`));
 
-    // 9) Push the v* tag to GitHub
+    // 10) Push the v* tag to GitHub
     execSync(`git push -f origin v${newVersion}`);
 
-    // 10) Push the "latest" tag to GitHub
+    // 11) Push the "latest" tag to GitHub
     if (!isPrerelease) {
         execSync('git tag -f latest');
         execSync('git push -f origin latest');
