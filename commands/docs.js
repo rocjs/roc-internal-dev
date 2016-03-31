@@ -1,4 +1,3 @@
-const exec = require('shelljs').exec;
 const writeFile = require('fs').writeFile;
 const join = require('path').join;
 
@@ -35,7 +34,7 @@ const writeFilePromise = (file) => {
 }
 
 module.exports = (packages) => () => {
-    Promise.all(packages.map((package) => {
+    return Promise.all(packages.map((package) => {
         const rocCommandObject = getConfiguration(package.path);
 
         return Promise.all([
@@ -63,47 +62,4 @@ module.exports = (packages) => () => {
         console.log('An error happened', err)
         process.exit(1);
     });
-        /*
-
-
-
-
-
-
-
-    if (roc.plugin) {
-        Promise.all([{
-            content: rocPackage.generateMarkdownActions(name, rocCommandObject.actions),
-            path: 'docs/Actions.md'
-        }, {
-            content: rocPackage.generateMarkdownHooks(name, rocCommandObject.hooks),
-            path: 'docs/Hooks.md'
-        }, {
-            content: rocPackage.generateMarkdownDocumentation(name, rocCommandObject.packageConfig, rocCommandObject.metaObject),
-            path: 'docs/Settings.md'
-        }, {
-            content: rocPackage.generateMarkdownCommands(
-                rocCommandObject.packageConfig,
-                rocCommandObject.metaObject,
-                {name: name},
-                {
-                    'settings-link': '/docs/Settings.md'
-                },
-                {
-                    'hide-commands': [].concat(toHide0, toHide2)
-                }
-            ),
-            path: 'docs/Commands.md'
-        }].map(writeFilePromise))
-            .then(() => console.log('Done'))
-            .catch((err) => {
-                console.log('An error happened', err)
-                process.exit(1);
-            });
-
-        return;
-    }
-
-    exec(`${generateDocumentation(`packages/${packageName}/`)} & ${generateDocumentation(`packages/${packageName}-dev/`)}`)
-    */
 };

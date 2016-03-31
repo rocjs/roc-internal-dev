@@ -23,32 +23,32 @@ module.exports = (packages) => () => {
     execSync(require('./lint')(packages));
 
     // 3) Generate new documentation
-    execSync(require('./docs')(packages));
+    require('./docs')(packages)().then(() => {
+        // 4) Increment the package version in package.json for all projects
+        packages.forEach((package) =>
+                execSync(`cd ${package.path} && npm version ${nextVersion} --no-git-tag-version`));
 
-    // 4) Increment the package version in package.json for all projects
-    packages.forEach((package) =>
-        execSync(`cd ${package.path} && npm version ${nextVersion} --no-git-tag-version`));
+        // 5) Read the version from main package
+        const newVersion = getVersion();
 
-    // 5) Read the version from main package
-    const newVersion = getVersion();
+        // 6) Create a new commit
+        // 7) Create a v* tag that points to that commit
+        execSync(`git add . && git commit -m "Version ${newVersion}" && git tag v${newVersion}`);
 
-    // 6) Create a new commit
-    // 7) Create a v* tag that points to that commit
-    execSync(`git add . && git commit -m "Version ${newVersion}" && git tag v${newVersion}`);
+        // 8) Push to GitHub master. Do this before we publish in case anyone has pushed to GitHub since we last pulled
+        execSync('git push origin master');
 
-    // 8) Push to GitHub master. Do this before we publish in case anyone has pushed to GitHub since we last pulled
-    execSync('git push origin master');
+        // 9) Publish to npm. Use the "next" tag for pre-releases, "latest" for all others
+        packages.forEach((package) =>
+                execSync(`cd ${package.path} && npm publish --tag ${isPrerelease ? 'next' : 'latest'}`));
 
-    // 9) Publish to npm. Use the "next" tag for pre-releases, "latest" for all others
-    packages.forEach((package) =>
-        execSync(`cd ${package.path} && npm publish --tag ${isPrerelease ? 'next' : 'latest'}`));
+        // 10) Push the v* tag to GitHub
+        execSync(`git push -f origin v${newVersion}`);
 
-    // 10) Push the v* tag to GitHub
-    execSync(`git push -f origin v${newVersion}`);
-
-    // 11) Push the "latest" tag to GitHub
-    if (!isPrerelease) {
-        execSync('git tag -f latest');
-        execSync('git push -f origin latest');
-    }
+        // 11) Push the "latest" tag to GitHub
+        if (!isPrerelease) {
+            execSync('git tag -f latest');
+            execSync('git push -f origin latest');
+        }
+    });
 }
