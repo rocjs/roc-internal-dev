@@ -21,6 +21,9 @@ You can use the short name `rid` if you don't want to write out the entire name.
 We should create a template that can be used to quickly create new packages/plugins.
 
 # Changelog
+## 1.2.1
+- Now uses `lint-alias` instead of `alias` when doing the release.
+
 ## 1.2.0
 - Now generates new documentation when creating a new release.
 
