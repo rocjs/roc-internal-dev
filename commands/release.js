@@ -20,7 +20,7 @@ module.exports = (packages) => () => {
     execSync(require('./build')(packages));
 
     // 2) Make sure the tests pass (Currently only lint)
-    execSync(require('./lint')(packages));
+    execSync(require('./lint-alias')(packages));
 
     // 3) Generate new documentation
     require('./docs')(packages)().then(() => {
