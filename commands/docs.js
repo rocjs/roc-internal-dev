@@ -1,9 +1,7 @@
 const writeFile = require('fs').writeFile;
 const join = require('path').join;
 
-const toHide0 = Object.keys(require('roc').roc.config.commands);
 const toHide = Object.keys(require('roc').roc.config.commands).join(',');
-const toHide2 = Object.keys(require('../config/roc.config.meta.js').commands);
 
 const getConfiguration = require('roc').getConfiguration;
 
