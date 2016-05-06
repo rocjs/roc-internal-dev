@@ -2,6 +2,7 @@ const readdirSync = require('fs').readdirSync;
 const fileExists = require('roc').fileExists;
 
 const packages =
+    !fileExists(`${process.cwd()}/packages`) ? [] : 
     readdirSync(`${process.cwd()}/packages`)
     .map((package) => {
         if (fileExists(`${process.cwd()}/packages/${package}/package.json`)) {

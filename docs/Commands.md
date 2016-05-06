@@ -1,4 +1,4 @@
-# Commands for `roc-internal-dev`
+# Commands for `@rocjs/roc-internal-dev`
 
 ## General Information
 All commands can be called with some additional options as can be seen below.
@@ -28,62 +28,68 @@ All commands can be called with some additional options as can be seen below.
 __Builds project__
 
 ```
-roc-internal-dev build
+@rocjs/roc-internal-dev build
 ```
 
 ## build:watch
 __Builds project in watch mode__
 
 ```
-roc-internal-dev build:watch
+@rocjs/roc-internal-dev build:watch
 ```
 
 ## clean
 __Cleans generated files__
 
 ```
-roc-internal-dev clean
+@rocjs/roc-internal-dev clean
 ```
 
 ## docs
 __Generates markdown documentation__
 
 ```
-roc-internal-dev docs
+@rocjs/roc-internal-dev docs
 ```
 
 ## esdocs
 __Generates ESDoc__
 
 ```
-roc-internal-dev esdocs
+@rocjs/roc-internal-dev esdocs
 ```
 
 ## link
 __Links up the project__
 
 ```
-roc-internal-dev link
+@rocjs/roc-internal-dev link [packages]
 ```
+
+### Arguments
+
+| Name     | Description                                                  | Required | Type | Default |
+| -------- | ------------------------------------------------------------ | -------- | ---- | ------- |
+| packages | Modules that should be linked into the packages in packages/ | No       |      |         |
 
 ## lint
 __Runs lint__
 
 ```
-roc-internal-dev lint
+@rocjs/roc-internal-dev lint
 ```
 
 ## lint:alias
-__Run local lint inside packages__
+__Run local lint inside packages (Not plugin)__
 
 ```
-roc-internal-dev lint:alias
+@rocjs/roc-internal-dev lint:alias
 ```
 
 ## release
 __Run release script__
 
 ```
-roc-internal-dev release
+@rocjs/roc-internal-dev release
 ```
 
