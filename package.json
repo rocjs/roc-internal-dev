@@ -6,9 +6,17 @@
   "bin": {
     "rid": "bin.js"
   },
+  "files": [
+    "commands",
+    "config",
+    "configuration",
+    "bin.js",
+    "index.js"
+  ],
   "scripts": {
     "check": "ncu",
-    "docs": "node generate-documentation.js > docs/Commands.md"
+    "docs": "node generate-documentation.js > docs/Commands.md",
+    "prepublish": "npm run docs"
   },
   "author": "VG",
   "license": "MIT",
