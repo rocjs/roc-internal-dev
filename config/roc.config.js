@@ -1,11 +1,20 @@
-const readdirSync = require('fs').readdirSync;
-const fileExists = require('roc').fileExists;
+const fs = require('fs');
+const roc = require('roc');
+
+const folderExists = (path) => {
+    path = roc.getAbsolutePath(path);
+    try {
+        return fs.statSync(path).isDirectory();
+    } catch (error) {
+        return false;
+    }
+};
 
 const packages =
-    !fileExists(`${process.cwd()}/packages`) ? [] : 
-    readdirSync(`${process.cwd()}/packages`)
+    !folderExists(`${process.cwd()}/packages`) ? [] :
+    fs.readdirSync(`${process.cwd()}/packages`)
     .map((package) => {
-        if (fileExists(`${process.cwd()}/packages/${package}/package.json`)) {
+        if (roc.fileExists(`${process.cwd()}/packages/${package}/package.json`)) {
             return {
                 folder: package,
                 path: `${process.cwd()}/packages/${package}`,
