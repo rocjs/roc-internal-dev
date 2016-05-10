@@ -21,6 +21,9 @@ You can use the short name `rid` if you don't want to write out the entire name.
 We should create a template that can be used to quickly create new packages/plugins.
 
 # Changelog
+## 1.3.2
+- Fixed regression from the previous release.
+
 ## 1.3.1
 - Added a way to link additional modules when running the `link` command, see `rid link -h` for more info.
 
