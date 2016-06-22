@@ -1,7 +1,14 @@
 #! /usr/bin/env node
 
-const pkg = require('./package.json');
 const runCli = require('roc').runCli;
-const roc = require('./').roc;
 
-runCli({ version: pkg.version, name: pkg.name }, roc.config, roc.meta);
+const pkg = require('./package.json');
+const commands = require('./commands');
+
+runCli({
+    info: {
+        version: pkg.version,
+        name: Object.keys(pkg.bin)[0]
+    },
+    commands
+});

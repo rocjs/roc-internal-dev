@@ -1,24 +1,24 @@
 const babel = require.resolve('babel-cli/bin/babel');
 
 const babelPlugins = [
-    require.resolve('babel-plugin-transform-object-rest-spread'),
-    require.resolve('babel-plugin-transform-es2015-spread'),
-    require.resolve('babel-plugin-transform-es2015-function-name'),
-    require.resolve('babel-plugin-transform-es2015-sticky-regex'),
-    require.resolve('babel-plugin-transform-es2015-unicode-regex'),
-    require.resolve('babel-plugin-transform-es2015-parameters'),
-    require.resolve('babel-plugin-transform-es2015-destructuring'),
-    require.resolve('babel-plugin-transform-es2015-modules-commonjs'),
-    require.resolve('babel-plugin-transform-export-extensions'),
-].join(',');
+    'babel-plugin-transform-object-rest-spread',
+    'babel-plugin-transform-es2015-spread',
+    'babel-plugin-transform-es2015-function-name',
+    'babel-plugin-transform-es2015-sticky-regex',
+    'babel-plugin-transform-es2015-unicode-regex',
+    'babel-plugin-transform-es2015-parameters',
+    'babel-plugin-transform-es2015-destructuring',
+    'babel-plugin-transform-es2015-modules-commonjs',
+    'babel-plugin-transform-export-extensions'
+].map((plugin) => require.resolve(plugin)).join(',');
 
-const babelCommand = (package, extra) => {
-    extra = extra ? ' ' + extra : '';
-    return `${babel} ${package.path}/src --out-dir ${package.path}/lib --source-maps --plugins ${babelPlugins}${extra}`;
-}
+const babelCommand = (extension, extra) => {
+    const additional = extra ? ` ${extra}` : '';
+    return `${babel} ${extension.path}/src --out-dir ${extension.path}/lib ` +
+        ` --source-maps --plugins ${babelPlugins}${additional}`;
+};
 
-module.exports = (packages, extra) => {
-    return packages
-        .map((package) => babelCommand(package, extra))
+module.exports = (extensions, extra) =>
+    extensions
+        .map((extension) => babelCommand(extension, extra))
         .join(' & ');
-}

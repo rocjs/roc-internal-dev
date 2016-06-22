@@ -1,13 +1,17 @@
 module.exports = {
-    'extends': require.resolve('eslint-config-vgno'),
+    extends: require.resolve('eslint-config-airbnb-base'),
 
-    'parser': require.resolve('babel-eslint'),
+    parser: require.resolve('babel-eslint'),
 
-    'env': {
-        'es6': true
-    },
+    rules: {
+        indent: [2, 4, { SwitchCase: 1 }],
+        'comma-dangle': [2, 'never'],
+        'max-len': [2, 120, 4],
 
-    'ecmaFeatures': {
-        'modules': true
+        'import/order': [2, {
+            groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+            'newlines-between': 'always'
+        }],
+        'import/newline-after-import': [2]
     }
 };

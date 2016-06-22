@@ -1,54 +1,55 @@
-// Based on release script by Michael Jackson - @mjackson
+// Based on a release script by Michael Jackson - @mjackson
 const resolvePath = require('path').resolve;
 const readFileSync = require('fs').readFileSync;
+
 const prompt = require('readline-sync').question;
-const execSync = require('roc').executeSync;
+const executeSyncExit = require('roc').executeSyncExit;
 
-module.exports = (packages) => () => {
-    const firstPackagePath = packages[0].path;
+module.exports = (extensions) => () => {
+    const firstExtensionPath = extensions[0].path;
 
-    // Will base the version number on the first package
+    // Will base the version number on the first extension
     const getVersion = () =>
-        JSON.parse(readFileSync(resolvePath(firstPackagePath, 'package.json'))).version;
+        JSON.parse(readFileSync(resolvePath(firstExtensionPath, 'package.json'))).version;
 
-    // Get the next version, which may be specified as a semver version number or anything `npm version` recognizes. This
-    // is a "pre-release" if nextVersion is premajor, preminor, prepatch, or prerelease
+    // Get the next version, which may be specified as a semver version number or anything `npm version` recognizes.
+    // This is a "pre-release" if nextVersion is premajor, preminor, prepatch, or prerelease
     const nextVersion = prompt(`Next version (current version is ${getVersion()})? `);
     const isPrerelease = nextVersion.substring(0, 3) === 'pre';
 
     // 1) Make sure the build passes
-    execSync(require('./build')(packages));
+    executeSyncExit(require('./build')(extensions));
 
     // 2) Make sure the tests pass (Currently only lint)
-    execSync(require('./lint-alias')(packages));
+    executeSyncExit(require('./lint')(extensions));
 
     // 3) Generate new documentation
-    require('./docs')(packages)().then(() => {
+    require('./docs')(extensions)().then(() => {
         // 4) Increment the package version in package.json for all projects
-        packages.forEach((package) =>
-                execSync(`cd ${package.path} && npm version ${nextVersion} --no-git-tag-version`));
+        extensions.forEach((extension) =>
+                executeSyncExit(`cd ${extension.path} && npm version ${nextVersion} --no-git-tag-version`));
 
         // 5) Read the version from main package
         const newVersion = getVersion();
 
         // 6) Create a new commit
         // 7) Create a v* tag that points to that commit
-        execSync(`git add . && git commit -m "Version ${newVersion}" && git tag v${newVersion}`);
+        executeSyncExit(`git add . && git commit -m "Version ${newVersion}" && git tag v${newVersion}`);
 
         // 8) Push to GitHub master. Do this before we publish in case anyone has pushed to GitHub since we last pulled
-        execSync('git push origin master');
+        executeSyncExit('git push origin master');
 
         // 9) Publish to npm. Use the "next" tag for pre-releases, "latest" for all others
-        packages.forEach((package) =>
-                execSync(`cd ${package.path} && npm publish --tag ${isPrerelease ? 'next' : 'latest'}`));
+        extensions.forEach((extension) =>
+                executeSyncExit(`cd ${extension.path} && npm publish --tag ${isPrerelease ? 'next' : 'latest'}`));
 
         // 10) Push the v* tag to GitHub
-        execSync(`git push -f origin v${newVersion}`);
+        executeSyncExit(`git push -f origin v${newVersion}`);
 
         // 11) Push the "latest" tag to GitHub
         if (!isPrerelease) {
-            execSync('git tag -f latest');
-            execSync('git push -f origin latest');
+            executeSyncExit('git tag -f latest');
+            executeSyncExit('git push -f origin latest');
         }
     });
-}
+};

@@ -1,22 +1,19 @@
-#! /usr/bin/env node
+const fs = require('fs');
+const path = require('path');
 
-/*
-* This is a bit of a hack, but it works :)
-*/
-const pkg = require('./package.json');
-const roc = require('roc');
-const rid = require('./').roc;
+const commandsToMarkdown = require('roc/lib/documentation/markdown/commandsToMarkdown').default;
 
-const toHide = Object.keys(roc.roc.config.commands).join(',');
-const argv = [].concat(process.argv, ['markdown-commands', '--hide-commands', toHide]);
+const commands = require('./commands');
 
-roc.runCli(
-    { version: pkg.version, name: pkg.name },
-    {
-        commands: Object.assign({}, roc.roc.config.commands, rid.config.commands)
-    },
-    {
-        commands: Object.assign({}, roc.roc.meta.commands, rid.meta.commands)
-    },
-    argv
+fs.writeFile(
+    path.resolve('./docs/Commands.md'),
+    commandsToMarkdown(
+       'roc-internal-dev',
+       { settings: {} },
+       commands,
+       undefined,
+       undefined,
+       undefined,
+       'rid'
+   )
 );

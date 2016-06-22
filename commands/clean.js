@@ -1,9 +1,8 @@
 const rimraf = require.resolve('rimraf/bin');
 
-const clean = (package) => `${rimraf} ${package.path}/lib ${package.path}/esdocs`;
+const clean = (extension) => `${rimraf} ${extension.path}/lib ${extension.path}/esdocs`;
 
-module.exports = (packages) => {
-    return packages
+module.exports = (extensions) =>
+    extensions
         .map(clean)
         .join(' & ');
-}

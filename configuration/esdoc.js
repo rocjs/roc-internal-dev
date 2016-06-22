@@ -8,7 +8,7 @@ module.exports = {
         name: require.resolve('esdoc-importpath-plugin'),
         option: {
             replaces: [
-                {from: '^src/', to: 'lib/'}
+                { from: '^src/', to: 'lib/' }
             ]
         }
     }]
