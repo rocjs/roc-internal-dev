@@ -13,7 +13,7 @@ module.exports = (extensions) => () =>
                 })
             );
         }), Promise.resolve())
-    .then(() => log.done('Completed!'))
+    .then(() => log.done('\nDocumentation created for all extensions!'))
     .catch((err) => {
         log.error('An error happened when generating documentation', err);
     });
