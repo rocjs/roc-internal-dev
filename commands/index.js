@@ -59,5 +59,9 @@ module.exports = {
     release: {
         command: require('./release')(extensions),
         description: 'Run release script'
+    },
+    rnm: {
+        command: require('./removeNodeModules')(extensions),
+        description: 'Removes node_modules folders in extensions/'
     }
 };
