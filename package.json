@@ -1,5 +1,5 @@
 {
-  "name": "@rocjs/roc-internal-dev",
+  "name": "@rocjs/roc-package-internal-dev",
   "version": "1.3.2",
   "description": "Roc package for used for development of Roc packages",
   "bin": {
@@ -20,7 +20,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rocjs/roc-internal-dev.git"
+    "url": "https://github.com/rocjs/roc-package-internal-dev.git"
   },
   "dependencies": {
     "babel-cli": "~6.10.1",

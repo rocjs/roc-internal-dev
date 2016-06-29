@@ -1,11 +1,11 @@
-# roc-internal-dev [![Travis][build-badge]][build] [![npm package][npm-badge]][npm]
+# roc-package-internal-dev [![Travis][build-badge]][build] [![npm package][npm-badge]][npm]
 
 Internal tool for building Roc extensions.
 
 ## How to use
 Add this module as a dev dependency to the Roc extension that you want to manage. Then you can connect npm scripts to the commands that this module exposes.
 
-You can use the short name `rid` as an alternative to `roc-internal-dev` if you don't want to write out the entire name.
+You can use the short name `rid` as an alternative to `roc-package-internal-dev` if you don't want to write out the entire name.
 
 ```js
 "scripts": {
@@ -27,7 +27,7 @@ A useful tip is to add an alias to rid that makes it easier to work with in the 
 It is then possible to run all possible commands using `npm start <command>`.
 
 ## Get correct documentation
-It is important to add the extension itself to the `package.json` for `roc-internal-dev` to be able to generate documentation.
+It is important to add the extension itself to the `package.json` for `roc-package-internal-dev` to be able to generate documentation.
 
 __Example__
 ```json
@@ -50,6 +50,7 @@ __Example__
 - Updated to work with the latest version of `roc`.
 - Now uses `extensions/` instead of `packages/` for the extensions.
 - Changed from running `lint-alias` to `lint` on release.
+- Renamed from `roc-internal-dev` to `roc-package-internal-dev`.
 
 ## 1.3.2
 - Fixed regression from the previous release.
@@ -79,8 +80,8 @@ __Example__
 ## 1.0.0
 - Initial version
 
-[build-badge]: https://img.shields.io/travis/rocjs/roc-internal-dev/master.svg?style=flat-square
-[build]: https://travis-ci.org/rocjs/roc-internal-dev
+[build-badge]: https://img.shields.io/travis/rocjs/roc-package-internal-dev/master.svg?style=flat-square
+[build]: https://travis-ci.org/rocjs/roc-package-internal-dev
 
-[npm-badge]: https://img.shields.io/npm/v/@rocjs/roc-internal-dev.svg?style=flat-square
-[npm]: https://www.npmjs.org/package/@rocjs/roc-internal-dev
+[npm-badge]: https://img.shields.io/npm/v/@rocjs/roc-package-internal-dev.svg?style=flat-square
+[npm]: https://www.npmjs.org/package/@rocjs/roc-package-internal-dev

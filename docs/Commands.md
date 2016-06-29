@@ -1,4 +1,4 @@
-# Commands for `roc-internal-dev`
+# Commands for `roc-package-internal-dev`
 
 ## General Information
 All commands can be called with some additional options as can be seen below.
@@ -23,6 +23,7 @@ All commands can be called with some additional options as can be seen below.
 * [lint](#lint)
 * [lint:alias](#lintalias)
 * [release](#release)
+* [rnm](#rnm)
 
 ## build
 __Builds project__
@@ -91,5 +92,12 @@ __Run release script__
 
 ```
 rid release
+```
+
+## rnm
+__Removes node_modules folders in extensions/__
+
+```
+rid rnm
 ```
 
