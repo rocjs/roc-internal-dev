@@ -69,9 +69,9 @@ rid link [modules]
 
 ### Arguments
 
-| Name    | Description                                                      | Required | Type | Default |
-| ------- | ---------------------------------------------------------------- | -------- | ---- | ------- |
-| modules | Modules that should be linked into the extensions in extensions/ | No       |      |         |
+| Name    | Description                                                      | Default | Type | Required | Can be empty |
+| ------- | ---------------------------------------------------------------- | ------- | ---- | -------- | ------------ |
+| modules | Modules that should be linked into the extensions in extensions/ |         | `[]` | No       | Yes          |
 
 ## lint
 __Runs lint__

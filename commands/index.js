@@ -2,6 +2,7 @@ const fs = require('fs');
 
 const roc = require('roc');
 const toArray = require('roc/converters').toArray;
+const isArray = require('roc/validators').isArray;
 
 const extensions =
     !roc.folderExists(`${process.cwd()}/extensions`) ? [] :
@@ -45,7 +46,8 @@ module.exports = {
         arguments: [{
             name: 'modules',
             description: 'Modules that should be linked into the extensions in extensions/',
-            converter: toArray()
+            converter: toArray(),
+            validator: isArray()
         }]
     },
     'lint:alias': {
