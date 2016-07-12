@@ -8,7 +8,7 @@ const commands = require('./commands');
 fs.writeFile(
     path.resolve('./docs/Commands.md'),
     commandsToMarkdown(
-       'roc-package-internal-dev',
+       'roc-internal-dev',
        { settings: {} },
        commands,
        undefined,

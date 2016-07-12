@@ -1,10 +1,9 @@
-# Commands for `roc-package-internal-dev`
+# Commands for `roc-internal-dev`
 
 ## General Information
 All commands can be called with some additional options as can be seen below.
 
 ### General options
-
 | Name            | Description                                                                                                   | Required |
 | --------------- | ------------------------------------------------------------------------------------------------------------- | -------- |
 | -c, --config    | Path to configuration file, will default to roc.config.js in current working directory.                       | No       |
@@ -68,7 +67,6 @@ rid link [modules]
 ```
 
 ### Arguments
-
 | Name    | Description                                                      | Default | Type | Required | Can be empty |
 | ------- | ---------------------------------------------------------------- | ------- | ---- | -------- | ------------ |
 | modules | Modules that should be linked into the extensions in extensions/ |         | `[]` | No       | Yes          |
@@ -93,6 +91,11 @@ __Run release script__
 ```
 rid release
 ```
+
+### Command options
+| Name        | Description                                                            | Default | Type      | Required | Can be empty |
+| ----------- | ---------------------------------------------------------------------- | ------- | --------- | -------- | ------------ |
+| --use-alias | If lint:alias should be used over the default lint when doing releases | `false` | `Boolean` | No       | Yes          |
 
 ## rnm
 __Removes node_modules folders in extensions/__

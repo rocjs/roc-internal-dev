@@ -6,12 +6,13 @@ module.exports = (extensions) => () =>
     extensions.reduce((promise, extension) =>
         promise.then(() => {
             log.info(`Generating documentation for ${chalk.cyan(extension.name)}`);
-            return roc.getContext(extension.path).then((rocCommandObject) =>
-                roc.generateDocumentation({
-                    rocCommandObject: Object.assign({}, rocCommandObject, { directory: extension.path }),
-                    extension: true
-                })
-            );
+            return roc.generateDocumentation({
+                rocCommandObject: {
+                    context: roc.getContext(extension.path, undefined, false),
+                    directory: extension.path,
+                },
+                extension: true,
+            });
         }), Promise.resolve())
     .then(() => log.done('\nDocumentation created for all extensions!'))
     .catch((err) => {

@@ -8,7 +8,7 @@ const commands = require('./commands');
 runCli({
     info: {
         version: pkg.version,
-        name: Object.keys(pkg.bin)[0]
+        name: Object.keys(pkg.bin)[0],
     },
-    commands
+    commands,
 });

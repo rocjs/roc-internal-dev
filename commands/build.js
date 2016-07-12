@@ -9,7 +9,7 @@ const babelPlugins = [
     'babel-plugin-transform-es2015-parameters',
     'babel-plugin-transform-es2015-destructuring',
     'babel-plugin-transform-es2015-modules-commonjs',
-    'babel-plugin-transform-export-extensions'
+    'babel-plugin-transform-export-extensions',
 ].map((plugin) => require.resolve(plugin)).join(',');
 
 const babelCommand = (extension, extra) => {

@@ -1,8 +1,8 @@
 const fs = require('fs');
 
 const roc = require('roc');
-const toArray = require('roc/converters').toArray;
-const isArray = require('roc/validators').isArray;
+const converters = require('roc/converters');
+const validators = require('roc/validators');
 
 const extensions =
     !roc.folderExists(`${process.cwd()}/extensions`) ? [] :
@@ -12,7 +12,7 @@ const extensions =
                 return {
                     folder: extension,
                     path: `${process.cwd()}/extensions/${extension}`,
-                    name: require(`${process.cwd()}/extensions/${extension}/package.json`).name
+                    name: require(`${process.cwd()}/extensions/${extension}/package.json`).name,
                 };
             }
             return undefined;
@@ -22,23 +22,23 @@ const extensions =
 module.exports = {
     build: {
         command: require('./build')(extensions),
-        description: 'Builds project'
+        description: 'Builds project',
     },
     'build:watch': {
         command: require('./buildWatch')(extensions),
-        description: 'Builds project in watch mode'
+        description: 'Builds project in watch mode',
     },
     clean: {
         command: require('./clean')(extensions),
-        description: 'Cleans generated files'
+        description: 'Cleans generated files',
     },
     docs: {
         command: require('./docs')(extensions),
-        description: 'Generates markdown documentation'
+        description: 'Generates markdown documentation',
     },
     esdocs: {
         command: require('./esdocs')(extensions),
-        description: 'Generates ESDoc'
+        description: 'Generates ESDoc',
     },
     link: {
         command: require('./link')(extensions),
@@ -46,24 +46,31 @@ module.exports = {
         arguments: [{
             name: 'modules',
             description: 'Modules that should be linked into the extensions in extensions/',
-            converter: toArray(),
-            validator: isArray()
-        }]
+            converter: converters.toArray(),
+            validator: validators.isArray(),
+        }],
     },
     'lint:alias': {
         command: require('./lintAlias')(extensions),
-        description: 'Run local lint inside packages'
+        description: 'Run local lint inside packages',
     },
     lint: {
         command: require('./lint')(extensions),
-        description: 'Runs lint'
+        description: 'Runs lint',
     },
     release: {
         command: require('./release')(extensions),
-        description: 'Run release script'
+        description: 'Run release script',
+        options: [{
+            name: 'use-alias',
+            description: 'If lint:alias should be used over the default lint when doing releases',
+            default: false,
+            converter: converters.toBoolean,
+            validator: validators.isBoolean,
+        }],
     },
     rnm: {
         command: require('./removeNodeModules')(extensions),
-        description: 'Removes node_modules folders in extensions/'
-    }
+        description: 'Removes node_modules folders in extensions/',
+    },
 };

@@ -5,7 +5,8 @@ const readFileSync = require('fs').readFileSync;
 const prompt = require('readline-sync').question;
 const executeSyncExit = require('roc').executeSyncExit;
 
-module.exports = (extensions) => () => {
+module.exports = (extensions) => (rocCommandObject) => {
+    const useAlias = rocCommandObject.parsedOptions.options['use-alias'];
     const firstExtensionPath = extensions[0].path;
 
     // Will base the version number on the first extension
@@ -21,7 +22,11 @@ module.exports = (extensions) => () => {
     executeSyncExit(require('./build')(extensions));
 
     // 2) Make sure the tests pass (Currently only lint)
-    executeSyncExit(require('./lint')(extensions));
+    if (useAlias) {
+        executeSyncExit(require('./lintAlias')(extensions));
+    } else {
+        executeSyncExit(require('./lint')(extensions));
+    }
 
     // 3) Generate new documentation
     require('./docs')(extensions)().then(() => {
