@@ -3,7 +3,7 @@
   "version": "2.0.0-beta.1",
   "description": "Roc package for used for development of Roc packages",
   "bin": {
-    "rid": "bin.js"
+    "rid": "bin/index.js"
   },
   "files": [
     "commands",
