@@ -4,13 +4,14 @@
 All commands can be called with some additional options as can be seen below.
 
 ### General options
-| Name            | Description                                                                                                   | Required |
-| --------------- | ------------------------------------------------------------------------------------------------------------- | -------- |
-| -c, --config    | Path to configuration file, will default to roc.config.js in current working directory.                       | No       |
-| -d, --directory | Path to working directory, will default to the current working directory. Can be either absolute or relative. | No       |
-| -h, --help      | Output usage information.                                                                                     | No       |
-| -V, --verbose   | Enable verbose mode.                                                                                          | No       |
-| -v, --version   | Output version number.                                                                                        | No       |
+| Name                  | Description                                                                                                   | Required |
+| --------------------- | ------------------------------------------------------------------------------------------------------------- | -------- |
+| -b, --better-feedback | Will enable source-map-support and loud-rejection for a better experience with better feedback.               | No       |
+| -c, --config          | Path to configuration file, will default to roc.config.js in current working directory.                       | No       |
+| -d, --directory       | Path to working directory, will default to the current working directory. Can be either absolute or relative. | No       |
+| -h, --help            | Output usage information.                                                                                     | No       |
+| -V, --verbose         | Enable verbose mode.                                                                                          | No       |
+| -v, --version         | Output version number.                                                                                        | No       |
 
 ## Commands
 * [build](#build)
@@ -95,7 +96,7 @@ rid release
 ### Command options
 | Name        | Description                                                            | Default | Type      | Required | Can be empty |
 | ----------- | ---------------------------------------------------------------------- | ------- | --------- | -------- | ------------ |
-| --use-alias | If lint:alias should be used over the default lint when doing releases | `false` | `Boolean` | No       | Yes          |
+| --use-alias | If lint:alias should be used over the default lint when doing releases | `false` | `Boolean` | No       |              |
 
 ## rnm
 __Removes node_modules folders in extensions/__
