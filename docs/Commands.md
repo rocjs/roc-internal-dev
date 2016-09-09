@@ -1,9 +1,10 @@
 # Commands for `roc-internal-dev`
 
 ## General Information
-All commands can be called with some additional options as can be seen below.
+All commands can be called with some additional options illustrated in the table below.
 
 ### General options
+
 | Name                  | Description                                                                                                   | Required |
 | --------------------- | ------------------------------------------------------------------------------------------------------------- | -------- |
 | -b, --better-feedback | Will enable source-map-support and loud-rejection for a better experience with better feedback.               | No       |
@@ -68,6 +69,7 @@ rid link [modules]
 ```
 
 ### Arguments
+
 | Name    | Description                                                      | Default | Type | Required | Can be empty |
 | ------- | ---------------------------------------------------------------- | ------- | ---- | -------- | ------------ |
 | modules | Modules that should be linked into the extensions in extensions/ |         | `[]` | No       | Yes          |
@@ -94,6 +96,7 @@ rid release
 ```
 
 ### Command options
+
 | Name        | Description                                                            | Default | Type      | Required | Can be empty |
 | ----------- | ---------------------------------------------------------------------- | ------- | --------- | -------- | ------------ |
 | --use-alias | If lint:alias should be used over the default lint when doing releases | `false` | `Boolean` | No       |              |
