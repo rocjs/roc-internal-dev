@@ -43,12 +43,13 @@ module.exports = {
     link: {
         command: require('./link')(extensions),
         description: 'Links up the project',
-        arguments: [{
-            name: 'modules',
-            description: 'Modules that should be linked into the extensions in extensions/',
-            converter: converters.toArray(),
-            validator: validators.isArray(),
-        }],
+        arguments: {
+            modules: {
+                description: 'Modules that should be linked into the extensions in extensions/',
+                converter: converters.toArray(),
+                validator: validators.isArray(),
+            },
+        },
     },
     'lint:alias': {
         command: require('./lintAlias')(extensions),
@@ -61,13 +62,14 @@ module.exports = {
     release: {
         command: require('./release')(extensions),
         description: 'Run release script',
-        options: [{
-            name: 'use-alias',
-            description: 'If lint:alias should be used over the default lint when doing releases',
-            default: false,
-            converter: converters.toBoolean,
-            validator: validators.isBoolean,
-        }],
+        options: {
+            'use-alias': {
+                description: 'If lint:alias should be used over the default lint when doing releases',
+                default: false,
+                converter: converters.toBoolean,
+                validator: validators.isBoolean,
+            },
+        },
     },
     rnm: {
         command: require('./removeNodeModules')(extensions),

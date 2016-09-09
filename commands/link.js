@@ -24,8 +24,8 @@ const linkExtra = (extra) => {
 
 const link = (extension, extra) => `cd ${extension.path} && ${linkExtra(extra)} && ${linkPrevious(extension.name)}`;
 
-module.exports = (extensions) => (rocCommandObject) => {
-    const extra = rocCommandObject.parsedArguments.arguments.modules || [];
+module.exports = (extensions) => (commandObject) => {
+    const extra = commandObject.arguments.managed.modules || [];
     executeSyncExit(
       extensions
         .map((extension) => link(extension, extra))
