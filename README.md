@@ -51,6 +51,7 @@ __Example__
 - Now uses `extensions/` instead of `packages/` for the extensions.
 - Changed from running `lint-alias` to `lint` on release by default and added option to use alias with `--use-alias`.
 - Updated to use ESLint 3.0.
+- Added new command, `rnm`, for removing `node_modules` in extensions directory. 
 
 ## 1.3.2
 - Fixed regression from the previous release.

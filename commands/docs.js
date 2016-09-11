@@ -15,7 +15,10 @@ module.exports = (extensions) => () =>
                 extension: true,
             });
         }), Promise.resolve())
-    .then(() => log.success('Documentation created for all extensions!'))
+    .then(() => {
+        log.log();
+        log.success('Documentation created for all extensions!');
+    })
     .catch((err) => {
         log.error('An error happened when generating documentation', err);
     });
