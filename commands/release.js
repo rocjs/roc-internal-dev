@@ -7,6 +7,8 @@ const executeSyncExit = require('roc').executeSyncExit;
 
 module.exports = (extensions) => (commandObject) => {
     const useAlias = commandObject.options.managed['use-alias'];
+    const isNext = commandObject.options.managed['next'];
+
     const firstExtensionPath = extensions[0].path;
 
     // Will base the version number on the first extension
@@ -16,7 +18,7 @@ module.exports = (extensions) => (commandObject) => {
     // Get the next version, which may be specified as a semver version number or anything `npm version` recognizes.
     // This is a "pre-release" if nextVersion is premajor, preminor, prepatch, or prerelease
     const nextVersion = prompt(`Next version (current version is ${getVersion()})? `);
-    const isPrerelease = nextVersion.substring(0, 3) === 'pre';
+    const isPrerelease = isNext || nextVersion.substring(0, 3) === 'pre';
 
     // 1) Make sure the build passes
     executeSyncExit(require('./build')(extensions));

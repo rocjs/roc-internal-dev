@@ -69,6 +69,12 @@ module.exports = {
                 converter: converters.toBoolean,
                 validator: validators.isBoolean,
             },
+            'next': {
+                description: 'Publish to next tag on npm',
+                default: false,
+                converter: converters.toBoolean,
+                validator: validators.isBoolean,
+            },
         },
     },
     rnm: {
