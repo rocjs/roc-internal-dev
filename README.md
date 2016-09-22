@@ -46,6 +46,10 @@ __Example__
 [Please see here for all of the commands](/docs/Commands.md).
 
 # Changelog
+## 2.0.2
+- Fixed a bug in the release command.
+- Added `--next` flag to be used with `release` command.
+
 ## 2.0.1
 - Added missing `bin/` folder when publishing to npm.
 

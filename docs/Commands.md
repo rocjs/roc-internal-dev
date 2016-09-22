@@ -99,6 +99,7 @@ rid release
 
 | Name        | Description                                                            | Default | Type      | Required | Can be empty |
 | ----------- | ---------------------------------------------------------------------- | ------- | --------- | -------- | ------------ |
+| --next      | Publish to next tag on npm                                             | `false` | `Boolean` | No       |              |
 | --use-alias | If lint:alias should be used over the default lint when doing releases | `false` | `Boolean` | No       |              |
 
 ## rnm
