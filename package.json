@@ -8,7 +8,7 @@
   "files": [
     "commands",
     "configuration",
-    "bin.js"
+    "bin"
   ],
   "scripts": {
     "docs": "node generate-documentation.js",
