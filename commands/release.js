@@ -5,8 +5,8 @@ const readFileSync = require('fs').readFileSync;
 const prompt = require('readline-sync').question;
 const executeSyncExit = require('roc').executeSyncExit;
 
-module.exports = (extensions) => (rocCommandObject) => {
-    const useAlias = rocCommandObject.parsedOptions.options['use-alias'];
+module.exports = (extensions) => (commandObject) => {
+    const useAlias = commandObject.options.managed['use-alias'];
     const firstExtensionPath = extensions[0].path;
 
     // Will base the version number on the first extension
