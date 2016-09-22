@@ -46,12 +46,15 @@ __Example__
 [Please see here for all of the commands](/docs/Commands.md).
 
 # Changelog
+## 2.0.1
+- Added missing `bin/` folder when publishing to npm.
+
 ## 2.0.0
 - Updated to work with the latest version of `roc`.
 - Now uses `extensions/` instead of `packages/` for the extensions.
 - Changed from running `lint-alias` to `lint` on release by default and added option to use alias with `--use-alias`.
 - Updated to use ESLint 3.0.
-- Added new command, `rnm`, for removing `node_modules` in extensions directory. 
+- Added new command, `rnm`, for removing `node_modules` in extensions directory.
 
 ## 1.3.2
 - Fixed regression from the previous release.
