@@ -1,17 +1,18 @@
-# Commands for `@rocjs/roc-internal-dev`
+# Commands for `roc-internal-dev`
 
 ## General Information
-All commands can be called with some additional options as can be seen below.
+All commands can be called with some additional options illustrated in the table below.
 
 ### General options
 
-| Name            | Description                                                                                                   | Required |
-| --------------- | ------------------------------------------------------------------------------------------------------------- | -------- |
-| -c, --config    | Path to configuration file, will default to roc.config.js in current working directory.                       | No       |
-| -d, --directory | Path to working directory, will default to the current working directory. Can be either absolute or relative. | No       |
-| -h, --help      | Output usage information.                                                                                     | No       |
-| -V, --verbose   | Enable verbose mode.                                                                                          | No       |
-| -v, --version   | Output version number.                                                                                        | No       |
+| Name                  | Description                                    | Required |
+| --------------------- | ---------------------------------------------- | -------- |
+| -b, --better-feedback | Enables source-map-support and loud-rejection. | No       |
+| -c, --config          | Path to configuration file.                    | No       |
+| -d, --directory       | Path to working directory.                     | No       |
+| -h, --help            | Output usage information.                      | No       |
+| -V, --verbose         | Enable verbose mode.                           | No       |
+| -v, --version         | Output version number.                         | No       |
 
 ## Commands
 * [build](#build)
@@ -23,73 +24,87 @@ All commands can be called with some additional options as can be seen below.
 * [lint](#lint)
 * [lint:alias](#lintalias)
 * [release](#release)
+* [rnm](#rnm)
 
 ## build
 __Builds project__
 
 ```
-@rocjs/roc-internal-dev build
+rid build
 ```
 
 ## build:watch
 __Builds project in watch mode__
 
 ```
-@rocjs/roc-internal-dev build:watch
+rid build:watch
 ```
 
 ## clean
 __Cleans generated files__
 
 ```
-@rocjs/roc-internal-dev clean
+rid clean
 ```
 
 ## docs
 __Generates markdown documentation__
 
 ```
-@rocjs/roc-internal-dev docs
+rid docs
 ```
 
 ## esdocs
 __Generates ESDoc__
 
 ```
-@rocjs/roc-internal-dev esdocs
+rid esdocs
 ```
 
 ## link
 __Links up the project__
 
 ```
-@rocjs/roc-internal-dev link [packages]
+rid link [modules]
 ```
 
 ### Arguments
 
-| Name     | Description                                                  | Required | Type | Default |
-| -------- | ------------------------------------------------------------ | -------- | ---- | ------- |
-| packages | Modules that should be linked into the packages in packages/ | No       |      |         |
+| Name    | Description                                                      | Default | Type | Required | Can be empty |
+| ------- | ---------------------------------------------------------------- | ------- | ---- | -------- | ------------ |
+| modules | Modules that should be linked into the extensions in extensions/ |         | `[]` | No       | Yes          |
 
 ## lint
 __Runs lint__
 
 ```
-@rocjs/roc-internal-dev lint
+rid lint
 ```
 
 ## lint:alias
-__Run local lint inside packages (Not plugin)__
+__Run local lint inside packages__
 
 ```
-@rocjs/roc-internal-dev lint:alias
+rid lint:alias
 ```
 
 ## release
 __Run release script__
 
 ```
-@rocjs/roc-internal-dev release
+rid release
+```
+
+### Command options
+
+| Name        | Description                                                            | Default | Type      | Required | Can be empty |
+| ----------- | ---------------------------------------------------------------------- | ------- | --------- | -------- | ------------ |
+| --use-alias | If lint:alias should be used over the default lint when doing releases | `false` | `Boolean` | No       |              |
+
+## rnm
+__Removes node_modules folders in extensions/__
+
+```
+rid rnm
 ```
 

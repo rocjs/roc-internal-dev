@@ -1,11 +1,10 @@
 const eslint = require.resolve('eslint/bin/eslint');
 const eslintConfig = require.resolve('../configuration/.eslintrc.js');
 
-const eslintCommand = (package) =>
-    `${eslint} --config ${eslintConfig} ${package.path}/src --no-ignore`;
+const eslintCommand = (extension) =>
+    `${eslint} --config ${eslintConfig} ${extension.path}/src --no-ignore`;
 
-module.exports = (packages, extra) => {
-    return packages
+module.exports = (extensions) =>
+    extensions
         .map(eslintCommand)
         .join(' && ');
-}

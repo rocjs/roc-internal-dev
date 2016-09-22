@@ -1,63 +1,24 @@
-const writeFile = require('fs').writeFile;
-const join = require('path').join;
+const chalk = require('chalk');
+const buildContext = require('roc/lib/context/buildContext').default;
+const generateDocumentation = require('roc/lib/documentation/markdown/generateDocumentation').default;
+const log = require('roc/log/default/small');
 
-const toHide = Object.keys(require('roc').roc.config.commands).join(',');
-
-const getConfiguration = require('roc').getConfiguration;
-
-const rocPackage = require('roc');
-
-const settingsDocs =
-    'node bin/index.js markdown-settings > ./docs/Settings.md';
-const commandsDocs =
-    `node bin/index.js markdown-commands --hide-commands ${toHide} /dev/docs/Settings.md > ./docs/Commands.md`;
-const hooksDocs =
-    'node bin/index.js markdown-hooks > ./docs/Hooks.md';
-const actionsDocs =
-    'node bin/index.js markdown-actions > ./docs/Actions.md';
-
-const generateDocumentation = (path) =>
-    `cd ${path} && ${settingsDocs} && ${commandsDocs} && ${hooksDocs} && ${actionsDocs}`;
-
-const writeFilePromise = (file) => {
-    return new Promise((resolve, reject) => {
-        writeFile(file.path, file.content, (err) => {
-            if (err) {
-                return reject(err);
-            }
-
-            return resolve();
-        });
-    });
-}
-
-module.exports = (packages) => () => {
-    return Promise.all(packages.map((package) => {
-        const rocCommandObject = getConfiguration(package.path);
-
-        return Promise.all([
-            {
-                content: rocPackage.generateMarkdownActions(package.name, rocCommandObject.actions),
-                path: `${package.path}/docs/Actions.md`
-            }, {
-                content: rocPackage.generateMarkdownHooks(package.name, rocCommandObject.hooks),
-                path: `${package.path}/docs/Hooks.md`
-            }, {
-                content: rocPackage.generateMarkdownDocumentation(package.name, rocCommandObject.packageConfig, rocCommandObject.metaObject),
-                path: `${package.path}/docs/Settings.md`
-            }, {
-                content: rocPackage.generateMarkdownCommands(
-                    package.name,
-                    rocCommandObject.packageConfig,
-                    rocCommandObject.metaObject,
-                    `/packages/${package.folder}/docs/Settings.md`
-                ),
-                path: `${package.path}/docs/Commands.md`
-            }
-        ].map(writeFilePromise));
-    })).then(() => console.log('Done'))
+module.exports = (extensions) => () =>
+    extensions.reduce((promise, extension) =>
+        promise.then(() => {
+            log.log(`Generating documentation for ${chalk.cyan(extension.name)}`);
+            return generateDocumentation({
+                commandObject: {
+                    context: buildContext(extension.path, undefined, false),
+                    directory: extension.path,
+                },
+                extension: true,
+            });
+        }), Promise.resolve())
+    .then(() => {
+        log.log();
+        log.success('Documentation created for all extensions!');
+    })
     .catch((err) => {
-        console.log('An error happened', err)
-        process.exit(1);
+        log.error('An error happened when generating documentation', err);
     });
-};

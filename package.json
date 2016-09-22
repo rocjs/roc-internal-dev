@@ -1,52 +1,48 @@
 {
   "name": "@rocjs/roc-internal-dev",
-  "version": "1.3.2",
-  "description": "Roc package for used for development of Roc packages",
-  "main": "index.js",
+  "version": "2.0.0-beta.1",
+  "description": "Roc enhancher used for development of Roc extensions",
   "bin": {
-    "rid": "bin.js"
+    "rid": "bin/index.js"
   },
   "files": [
     "commands",
-    "config",
     "configuration",
-    "bin.js",
-    "index.js"
+    "bin.js"
   ],
   "scripts": {
-    "check": "ncu",
-    "docs": "node generate-documentation.js > docs/Commands.md",
-    "prepublish": "npm run docs"
+    "docs": "node generate-documentation.js",
+    "lint": "eslint .",
+    "test": "npm run lint"
   },
-  "author": "VG",
+  "repository": "https://github.com/rocjs/roc-internal-dev",
+  "author": "Verdens Gang AS",
+  "contributors": [{
+    "name": "Gustaf Dalemar"
+  }],
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/rocjs/roc-internal-dev.git"
-  },
   "dependencies": {
-    "babel-cli": "~6.5.1",
-    "babel-eslint": "~5.0.0",
-    "babel-plugin-transform-es2015-destructuring": "~6.5.0",
-    "babel-plugin-transform-es2015-function-name": "~6.5.0",
-    "babel-plugin-transform-es2015-modules-commonjs": "~6.5.0",
-    "babel-plugin-transform-es2015-parameters": "~6.5.0",
-    "babel-plugin-transform-es2015-spread": "~6.5.0",
-    "babel-plugin-transform-es2015-sticky-regex": "~6.5.0",
-    "babel-plugin-transform-es2015-unicode-regex": "~6.5.0",
-    "babel-plugin-transform-export-extensions": "~6.5.0",
-    "babel-plugin-transform-object-rest-spread": "~6.5.0",
-    "esdoc": "~0.4.3",
+    "babel-cli": "~6.14.0",
+    "babel-eslint": "~6.1.2",
+    "babel-plugin-transform-es2015-destructuring": "~6.9.0",
+    "babel-plugin-transform-es2015-function-name": "~6.9.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "~6.14.0",
+    "babel-plugin-transform-es2015-parameters": "~6.11.4",
+    "babel-plugin-transform-es2015-spread": "~6.8.0",
+    "babel-plugin-transform-es2015-sticky-regex": "~6.8.0",
+    "babel-plugin-transform-es2015-unicode-regex": "~6.11.0",
+    "babel-plugin-transform-export-extensions": "~6.8.0",
+    "babel-plugin-transform-object-rest-spread": "~6.8.0",
+    "chalk": "~1.1.3",
+    "esdoc": "~0.4.8",
     "esdoc-es7-plugin": "~0.0.3",
-    "esdoc-importpath-plugin": "0.0.1",
-    "eslint": "~1.10.3",
-    "eslint-config-vgno": "~5.0.0",
-    "readline-sync": "~1.4.1",
-    "rimraf": "~2.5.1",
-    "roc": "^1.0.0-rc",
-    "shelljs": "~0.6.0"
-  },
-  "devDependencies": {
-    "npm-check-updates": "~2.5.8"
+    "esdoc-importpath-plugin": "~0.0.1",
+    "eslint": "~3.5.0",
+    "eslint-config-airbnb-base": "~7.0.1",
+    "eslint-plugin-babel": "~3.3.0",
+    "eslint-plugin-import": "~1.14.0",
+    "readline-sync": "~1.4.4",
+    "rimraf": "~2.5.4",
+    "roc": "^1.0.0-rc.11"
   }
 }
