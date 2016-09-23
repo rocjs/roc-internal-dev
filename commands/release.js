@@ -20,6 +20,9 @@ module.exports = (extensions) => (commandObject) => {
     const nextVersion = prompt(`Next version (current version is ${getVersion()})? `);
     const isPrerelease = isNext || nextVersion.substring(0, 3) === 'pre';
 
+    // 0) Clean the project
+    executeSyncExit(require('./clean')(extensions));
+
     // 1) Make sure the build passes
     executeSyncExit(require('./build')(extensions));
 
