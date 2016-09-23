@@ -7,7 +7,7 @@ const executeSyncExit = require('roc').executeSyncExit;
 
 module.exports = (extensions) => (commandObject) => {
     const useAlias = commandObject.options.managed['use-alias'];
-    const isNext = commandObject.options.managed['next'];
+    const isNext = commandObject.options.managed.next;
 
     const firstExtensionPath = extensions[0].path;
 
