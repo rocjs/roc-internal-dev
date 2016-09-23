@@ -46,6 +46,9 @@ __Example__
 [Please see here for all of the commands](/docs/Commands.md).
 
 # Changelog
+## 2.0.3
+- Now runs `clean` when running `release`.
+
 ## 2.0.2
 - Fixed a bug in the release command.
 - Added `--next` flag to be used with `release` command.
