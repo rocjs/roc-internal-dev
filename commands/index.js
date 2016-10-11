@@ -50,6 +50,13 @@ module.exports = {
                 validator: validators.isArray(),
             },
         },
+        options: {
+            yarn: {
+                description: 'If yarn should be used over npm',
+                default: false,
+                validator: validators.isBoolean,
+            },
+        },
     },
     'lint:alias': {
         command: require('./lintAlias')(extensions),
