@@ -46,6 +46,9 @@ __Example__
 [Please see here for all of the commands](/docs/Commands.md).
 
 # Changelog
+## 2.1.0
+- Makes it possible to use `yarn` over `npm` when using `rid link`.
+
 ## 2.0.3
 - Now runs `clean` when running `release`.
 

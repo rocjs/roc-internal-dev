@@ -70,9 +70,15 @@ rid link [modules]
 
 ### Arguments
 
-| Name    | Description                                                      | Default | Type | Required | Can be empty |
-| ------- | ---------------------------------------------------------------- | ------- | ---- | -------- | ------------ |
-| modules | Modules that should be linked into the extensions in extensions/ |         | `[]` | No       | Yes          |
+| Name    | Description                                                      | Default | Type      | Required | Can be empty |
+| ------- | ---------------------------------------------------------------- | ------- | --------- | -------- | ------------ |
+| modules | Modules that should be linked into the extensions in extensions/ |         | `[]`      | No       | Yes          |
+
+### Command options
+
+| Name    | Description                                                      | Default | Type      | Required | Can be empty |
+| ------- | ---------------------------------------------------------------- | ------- | --------- | -------- | ------------ |
+| --yarn  | If yarn should be used over npm                                  | `false` | `Boolean` | No       |              |
 
 ## lint
 __Runs lint__
