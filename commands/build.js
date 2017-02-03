@@ -14,8 +14,11 @@ const babelPlugins = [
 
 const babelCommand = (extension, extra) => {
     const additional = extra ? ` ${extra}` : '';
-    return `${babel} ${extension.path}/src --out-dir ${extension.path}/lib ` +
+
+    var preFix = /^win/.test(process.platform) ? 'node ' : '';
+    return `${preFix}${babel} ${extension.path}/src --out-dir ${extension.path}/lib ` +
         ` --source-maps --plugins ${babelPlugins}${additional}`;
+
 };
 
 module.exports = (extensions, extra) =>
