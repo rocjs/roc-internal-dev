@@ -1,7 +1,7 @@
 const rimraf = require.resolve('rimraf/bin');
 
 const clean = (extension) => {
-    let preFix = /^win/.test(process.platform) ? 'node ' : '';
+    const preFix = /^win/.test(process.platform) ? 'node ' : '';
     return `${preFix}${rimraf} ${extension.path}/lib ${extension.path}/esdocs`;
 };
 
