@@ -18,9 +18,7 @@ const linkPrevious = (name, yarn) => {
 
 const linkExtra = (extra, yarn) => {
     if (extra.length === 0) {
-        let noop = /^win/.test(process.platform) ? 'echo.' : ':';
-        // Noop in bash
-        return noop;
+        return /^win/.test(process.platform) ? 'echo.' : ':';
     }
 
     const pkg = yarn ? 'yarn' : 'npm';
