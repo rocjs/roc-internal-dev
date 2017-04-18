@@ -66,6 +66,10 @@ module.exports = {
         command: require('./lint')(extensions),
         description: 'Runs lint',
     },
+    'test:alias': {
+        command: require('./testAlias')(extensions),
+        description: 'Runs local test inside packages',
+    },
     release: {
         command: require('./release')(extensions),
         description: 'Run release script',
