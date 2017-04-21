@@ -46,6 +46,9 @@ __Example__
 [Please see here for all of the commands](/docs/Commands.md).
 
 # Changelog
+## 2.2.0
+- Added command for running `npm test` in extensions using `rid test:alias`.
+
 ## 2.1.0
 - Makes it possible to use `yarn` over `npm` when using `rid link`.
 

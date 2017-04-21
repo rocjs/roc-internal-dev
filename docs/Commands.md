@@ -25,6 +25,7 @@ All commands can be called with some additional options illustrated in the table
 * [lint:alias](#lintalias)
 * [release](#release)
 * [rnm](#rnm)
+* [test:alias](#testalias)
 
 ## build
 __Builds project__
@@ -72,7 +73,7 @@ rid link [modules]
 
 | Name    | Description                                                      | Default | Type      | Required | Can be empty |
 | ------- | ---------------------------------------------------------------- | ------- | --------- | -------- | ------------ |
-| modules | Modules that should be linked into the extensions in extensions/ |         | `[]`      | No       | Yes          |
+| modules | Modules that should be linked into the extensions in extensions/ |         | `Array()` | No       | Yes          |
 
 ### Command options
 
@@ -113,5 +114,12 @@ __Removes node_modules folders in extensions/__
 
 ```
 rid rnm
+```
+
+## test:alias
+__Runs local test inside packages__
+
+```
+rid test:alias
 ```
 
