@@ -10,7 +10,7 @@ const linkPrevious = (extension, yarn, useInstall) => {
 
     const operation = useInstall ? 'install' : 'link';
     const links = previous
-      .map(({ path, name }) => `${pkg} ${operation} ${useInstall ? path : name}`);
+      .map((prev) => `${pkg} ${operation} ${useInstall ? prev.path : prev.name}`);
     previous.push(extension);
     if (yarn) {
         links.push('yarn install');
