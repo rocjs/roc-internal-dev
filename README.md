@@ -46,6 +46,10 @@ __Example__
 [Please see here for all of the commands](/docs/Commands.md).
 
 # Changelog
+## 2.3.0
+- Added support for Windows (@RobinTo). #9
+- Added support for npm5. #11
+
 ## 2.2.0
 - Added command for running `npm test` in extensions using `rid test:alias`.
 
