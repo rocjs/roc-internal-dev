@@ -1,10 +1,8 @@
 const eslint = require.resolve('eslint/bin/eslint');
 const eslintConfig = require.resolve('../configuration/.eslintrc.js');
 
-const eslintCommand = (extension) => {
-    const preFix = /^win/.test(process.platform) ? 'node ' : '';
-    return `${preFix}${eslint} --config ${eslintConfig} ${extension.path}/src --no-ignore`;
-};
+const eslintCommand = (extension) =>
+    `node ${eslint} --config ${eslintConfig} ${extension.path}/src --no-ignore`;
 
 module.exports = (extensions) =>
     extensions
