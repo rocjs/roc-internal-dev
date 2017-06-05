@@ -1,6 +1,6 @@
 {
   "name": "@rocjs/roc-internal-dev",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "Roc enhancher used for development of Roc extensions",
   "bin": {
     "rid": "bin/index.js"
