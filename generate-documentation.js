@@ -16,4 +16,10 @@ fs.writeFile(
        undefined,
        'rid'
    )
-);
+, (error) => {
+    if (error) {
+        throw error;
+    }
+
+    console.log('The documentation has been updated.');
+});
