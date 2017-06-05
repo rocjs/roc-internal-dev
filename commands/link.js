@@ -18,19 +18,19 @@ const linkPrevious = (name, yarn) => {
 
 const linkExtra = (extra, yarn) => {
     if (extra.length === 0) {
-        // Noop in bash
-        return ':';
+        return '';
     }
 
     const pkg = yarn ? 'yarn' : 'npm';
 
-    return extra
+    return ` && ${extra
       .map((dependency) => `${pkg} link ${dependency}`)
-      .join(' && ');
+      .join(' && ')
+    }`;
 };
 
 const link = (extension, extra, yarn) =>
-    `cd ${extension.path} && ${linkExtra(extra, yarn)} && ${linkPrevious(extension.name, yarn)}`;
+    `cd ${extension.path}${linkExtra(extra, yarn)} && ${linkPrevious(extension.name, yarn)}`;
 
 module.exports = (extensions) => (commandObject) => {
     const extra = commandObject.arguments.managed.modules || [];
