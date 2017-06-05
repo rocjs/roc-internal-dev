@@ -46,9 +46,12 @@ __Example__
 [Please see here for all of the commands](/docs/Commands.md).
 
 # Changelog
+## 2.3.1
+- Fixed support for Node 4. [#13](https://github.com/rocjs/roc-internal-dev/pull/13)
+
 ## 2.3.0
-- Added support for Windows (@RobinTo). #9
-- Added support for npm5. #11
+- Added support for Windows ([@RobinTo](https://github.com/RobinTo)). [#9](https://github.com/rocjs/roc-internal-dev/pull/9)
+- Added support for npm5. [#11](https://github.com/rocjs/roc-internal-dev/pull/11)
 
 ## 2.2.0
 - Added command for running `npm test` in extensions using `rid test:alias`.
